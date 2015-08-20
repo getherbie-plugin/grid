@@ -24,15 +24,15 @@ class GridPlugin extends Herbie\Plugin
         $this->templates = $this->config('plugins.config.grid.templates', []);
     }
 
-    public function onContentSegmentLoaded(Herbie\Event $event)
+    public function onRenderContent($content)
     {
         $replaced = preg_replace_callback(
             '/-{2}\s+grid\s+(.+?)-{2}(.*?)-{2}\s+grid\s+-{2}/msi',
             [$this, 'replace'],
-            $event['segment']
+            $content->string
         );
         if (!is_null($replaced)) {
-            $event['segment'] = $replaced;
+            $content->string = $replaced;
         }
     }
 
