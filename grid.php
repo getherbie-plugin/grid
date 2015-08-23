@@ -1,46 +1,37 @@
 <?php
 
-/**
- * This file is part of Herbie.
- *
- * (c) Thomas Breuss <www.tebe.ch>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+use Herbie\DI;
+use Herbie\Hook;
 
-namespace herbie\plugin\grid;
-
-use Herbie;
-use Twig_SimpleFunction;
-
-class GridPlugin extends Herbie\Plugin
+class GridPlugin
 {
 
-    private $templates = [];
+    private static $templates = [];
 
-    public function init()
+    public static function install()
     {
-        $this->templates = $this->config('plugins.config.grid.templates', []);
+        self::$templates = DI::get('Config')->get('plugins.config.grid.templates', []);
+        Hook::attach('renderContent', ['GridPlugin', 'renderContent']);
     }
 
-    public function onRenderContent($content)
+    public static function renderContent($content)
     {
         $replaced = preg_replace_callback(
             '/-{2}\s+grid\s+(.+?)-{2}(.*?)-{2}\s+grid\s+-{2}/msi',
-            [$this, 'replace'],
-            $content->string
+            ['GridPlugin', 'replace'],
+            $content
         );
         if (!is_null($replaced)) {
-            $content->string = $replaced;
+            return $replaced;
         }
+        return $content;
     }
 
     /**
      * @param array $matches
      * @return string
      */
-    private function replace($matches)
+    private static function replace($matches)
     {
         if (empty($matches) || (count($matches) <> 3)) {
             return null;
@@ -50,11 +41,11 @@ class GridPlugin extends Herbie\Plugin
         $content = $matches[2];
 
         // no template defined
-        if (!array_key_exists($key, $this->templates)) {
+        if (!array_key_exists($key, self::$templates)) {
             // return content as it is
             return $content;
         }
-        $template = $this->templates[$key];
+        $template = self::$templates[$key];
 
         // split cols
         $cols = preg_split('/--\r?\n/', $content);
@@ -79,3 +70,5 @@ class GridPlugin extends Herbie\Plugin
         return $html;
     }
 }
+
+GridPlugin::install();
