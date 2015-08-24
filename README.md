@@ -1,5 +1,4 @@
-Herbie Grid Plugin
-==================
+# Herbie Grid Plugin
 
 `Grid` ist ein [Herbie](http://github.com/getherbie/herbie) Plugin, mit dem du in deinen Inhalten (HTML-/CSS-)Grids 
 erstellen kannst.
