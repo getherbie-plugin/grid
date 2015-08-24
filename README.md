@@ -5,6 +5,11 @@ Herbie Grid Plugin
 erstellen kannst.
 
 
+## Achtung
+
+Dieses Plugin ist **experimentell**. Bitte nicht in produktiver Umgebung einsetzen!
+
+
 ## Installation
 
 Das Plugin installierst du via Composer.
@@ -16,6 +21,7 @@ Danach aktivierst du das Plugin in der Konfigurationsdatei.
     plugins:
         enable:
             - grid
+
 
 ## Konfiguration
 
@@ -38,6 +44,7 @@ In der Konfigurationsdatei definierst du die gewünschten Vorlagen.
                             - '<div class="pure-u-1-2 col-{index}" markdown="1">{col}</div>'
                             
 Falls du innerhalb eines Grids Markdown verwenden willst, muss das HTML-Attribut `markdown="1"` gesetzt sein.
+
                              
 ## Anwendung
 
@@ -59,6 +66,7 @@ Nun kannst du in deinen Seiten die konfigurierten Grid-Templates aufrufen.
     --
     Inhalt Spalte 2 
     -- grid --
+
 
 ## Demo
 
