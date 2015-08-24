@@ -5,7 +5,7 @@ Herbie Grid Plugin
 erstellen kannst.
 
 
-## Achtung
+## Experimentell
 
 Dieses Plugin ist **experimentell**. Bitte nicht in produktiver Umgebung einsetzen!
 
