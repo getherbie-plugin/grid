@@ -69,4 +69,4 @@ Nun kannst du in deinen Seiten die konfigurierten Grid-Templates aufrufen.
 
 ## Demo
 
-<https://www.getherbie.org/dokumentation/plugins/grid>
+<https://herbie.tebe.ch/dokumentation/plugins/grid>
